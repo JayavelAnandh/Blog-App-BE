@@ -32,3 +32,5 @@ router.get("/", async (req, res) => {
     res.status(500).send();
   }
 });
+const blogRoutes = router;
+module.exports = { blogRoutes };
