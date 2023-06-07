@@ -20,13 +20,13 @@ router.post("/new", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     let blogs;
-    if (req.params.userName) {
-      let userName = req.params.userName;
-      blogs = await Blog.find({ userName });
-      return res.status(200).send(blogs).sort({ updatedAt: -1 });
+    if (req.query.userName) {
+      let userName = req.query.userName;
+      blogs = await Blog.find({ userName }).sort({ updatedAt: -1 });
+      return res.status(200).send(blogs);
     }
-    blogs = await Blog.find({});
-    return res.status(200).send(blogs).sort({ updatedAt: -1 });
+    blogs = await Blog.find({}).sort({ updatedAt: -1 });
+    return res.status(200).send(blogs);
   } catch (error) {
     console.log(error);
     res.status(500).send();
